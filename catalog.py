@@ -43,7 +43,7 @@ def delete():
 
 
 def search(keyword):
-    ...
+    print('no search function yet')
 
 
 def main():
@@ -69,3 +69,7 @@ def main():
         delete()
     else:
         search(input('Query: '))
+
+
+if __name__ == '__main__':
+    main()
