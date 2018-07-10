@@ -5,22 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="node_modules/Slidebars/dev/slidebars.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/master.css">
     <title>Catalog</title>
 </head>
 <body>
     <div id="fixed-navigation" canvas="">
-        fixed nav
+        <a id="hamburger" href="">
+            <img src="assets/img/list.png" alt="hamburger menu icon">
+        </a>
     </div>
     <div id="main" canvas="container">
-        main container
+        main container - home
+        <p id="test"></p>
     </div>
 
-    <div off-canvas="menu left push">
-        hi there
+    <div id="menu" off-canvas="menu left push">
+        <a href="" class="menu-links" id="link-home">
+            Catalog
+        </a>
+        <input type="text" placeholder="search the catalog">
+        <a href="view/" class="menu-links">
+            <img src="assets/img/search.png" alt="magnifying glass">View Catalog
+        </a>
+        <a href="add/" class="menu-links">
+            <img src="assets/img/plus.png" alt="plus sign">Add Entries
+        </a>
+        <a href="delete/" class="menu-links">
+            <img src="assets/img/line.png" alt="minus sign">Delete Entries
+        </a>
+        <a href="settings/" class="menu-links">
+            <img src="assets/img/cog.png" alt="gear">Settings
+        </a>
     </div>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/Slidebars/dev/slidebars.js"></script>
+    <script src="assets/js/jquery.color-2.1.2.min.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>

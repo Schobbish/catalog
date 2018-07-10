@@ -1,0 +1,63 @@
+/********************
+ * FIXED NAV STYLES *
+ ********************/
+#fixed-navigation {
+    background-color: #17667a;
+    padding: 10px 0 10px 5%;
+    -webkit-box-shadow: 0 0 8px 4px rgba(100,100,100,.5);
+    -moz-box-shadow: 0 0 8px 4px rgba(100,100,100,.5);
+    box-shadow: 0 0 8px 4px rgba(100,100,100,.5);
+}
+#hamburger {
+    display: block;
+    border-radius: 4px;
+    border: 1px solid #fdf6e3;
+    width: 41px;
+}
+#hamburger img {
+    width: 25px;
+    padding: 8px 8px 5px 8px;
+}
+/***************
+ * MAIN STYLES *
+ ***************/
+#main {
+    background: transparent;
+    padding-top: 10px;
+}
+
+/***************
+ * MENU STYLES *
+ ***************/
+[off-canvas] {
+    background-color: #002b36;
+}
+.menu-links {
+    display: block;
+    border-bottom: 1px solid #586e75;
+    padding: 16px 10px 20px 10px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    color: #fdf6e3;
+    text-decoration: none;
+}
+/* .menu-links:nth-of-type(2) {
+    border-top: 1px solid #586e75;
+} */
+.menu-links img {
+    width: 18px;
+    padding-right: 10px;
+    position: relative;
+    top: 3px;
+}
+#link-home {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0 4px 0;
+    border-bottom: none;
+}
+#menu input {
+    width: 80%;
+    margin: 10px 10% 0 10%;
+}

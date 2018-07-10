@@ -1,9 +1,20 @@
 $(document).ready(function() {
-    // init slidebars
+    // stuff after the '?' in the url
+    var uriQuery;
+    try {
+        uriQuery = decodeURIComponent(window.location.search).split('?')[1];
+    } catch (e) {
+        // if uri query is deformed remove it
+        window.location.replace(window.location.href.split('?')[0]);
+    }
+
+    /******************
+     * init slidebars *
+     ******************/
     var controller = new slidebars();
     controller.init();
 
-    $('#fixed-navigation').click(function(event) {
+    $('#hamburger').click(function(event) {
         // Stop default action and bubbling
         event.stopPropagation();
         event.preventDefault();
@@ -13,4 +24,17 @@ $(document).ready(function() {
     $('#main').click(function(event) {
         controller.close('menu');
     });
+
+    /**************
+     * search bar *
+     **************/
+    $('#menu input').keydown(function(event) {
+        // if user searches for something redirect to the view page and show results
+        if (event.key == 'Enter') {
+            const searchQuery = '?' + $(this).val();
+            const redirectURI = encodeURI(window.location.origin + '/view/' + searchQuery);
+            console.log(redirectURI)
+        }
+    });
+    $('#test').html(uriQuery);
 });
