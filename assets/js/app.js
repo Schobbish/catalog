@@ -30,10 +30,11 @@ $(document).ready(function() {
      **************/
     $('#menu input').keydown(function(event) {
         // if user searches for something redirect to the view page and show results
+        // this will not work on local
         if (event.key == 'Enter') {
             const searchQuery = '?' + $(this).val();
-            const redirectURI = encodeURI(window.location.origin + '/view/' + searchQuery);
-            console.log(redirectURI)
+            const redirectURI = encodeURIComponent(window.location.origin + '/view/' + searchQuery);
+            window.location.href = redirectURI;
         }
     });
     $('#test').html(uriQuery);
