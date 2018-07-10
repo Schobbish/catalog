@@ -32,8 +32,8 @@ $(document).ready(function() {
         // if user searches for something redirect to the view page and show results
         // this will not work on local
         if (event.key == 'Enter') {
-            const searchQuery = '?' + $(this).val();
-            const redirectURI = encodeURIComponent(window.location.origin + '/view/' + searchQuery);
+            const searchQuery = encodeURIComponent($(this).val());
+            const redirectURI = window.location.origin + '/view/?' + searchQuery;
             window.location.href = redirectURI;
         }
     });
