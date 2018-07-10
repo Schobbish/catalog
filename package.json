@@ -1,0 +1,19 @@
+{
+  "name": "catalog",
+  "version": "0.1.0",
+  "description": "A catalog for CDs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"This is a website. Open index.html in a web browser.\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/Schobbish/catalog.git"
+  },
+  "author": "Nathaniel Adam",
+  "license": "MIT",
+  "dependencies": {
+    "Slidebars": "^2.0.0",
+    "jquery": "^3.3.1"
+  }
+}
