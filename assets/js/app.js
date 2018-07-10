@@ -4,7 +4,7 @@ $(document).ready(function() {
     try {
         uriQuery = decodeURIComponent(window.location.search).split('?')[1];
     } catch (e) {
-        // if uri query is deformed remove it
+        // if uri query is deformed remove it (test: %E0%A4%A)
         window.location.replace(window.location.href.split('?')[0]);
     }
 
@@ -23,6 +23,19 @@ $(document).ready(function() {
     });
     $('#main').click(function(event) {
         controller.close('menu');
+    });
+    $('.menu-links').click(function(event) {
+        // stop default action and bubbling
+        event.stopPropagation();
+        event.preventDefault();
+        // toggle menu
+        controller.close('menu');
+        /* THEN go to the site (href needs to be defined outside because $(this)
+        returns undefined otherwise) */
+        var href = $(this).attr('href');
+        window.setTimeout(function() {
+            window.location.href = href;
+        }, 275);
     });
 
     /**************
