@@ -33,7 +33,7 @@ $(document).ready(function() {
         // this will not work on local
         if (event.key == 'Enter') {
             const searchQuery = encodeURIComponent($(this).val());
-            const redirectURI = window.location.origin + '/view/?' + searchQuery;
+            const redirectURI = window.location.origin + '/catalog/view/?' + searchQuery;
             window.location.href = redirectURI;
         }
     });
