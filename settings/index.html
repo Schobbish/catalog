@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../node_modules/Slidebars/dev/slidebars.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/master.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|PT+Serif" rel="stylesheet">
+    <title>Catalog</title>
+</head>
+<body>
+    <div id="fixed-navigation" canvas="">
+        <nav>
+            <a id="hamburger" href="">
+                <img src="../assets/img/list.png" alt="hamburger menu icon">
+            </a>
+            <h1>Settings</h1>
+        </nav>
+    </div>
+    <div id="main" canvas="container">
+        main container - settings
+        <h2>Credits</h2>
+        <p>Menu icons are made by <a href="http://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> and are licensed under the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 3.0 International License</a>.</p>
+
+        <h2>License</h2>
+        <p>The code behind this website is licensed under an MIT license. Read the whole thing <a href="../LICENSE">here</a></p>
+        <a href="https://www.github.com/Schobbish/catalog">GitHub</a>
+    </div>
+
+    <div id="menu" off-canvas="menu left push">
+        <a href="../" class="menu-links" id="link-home">
+            Catalog
+        </a>
+        <input type="text" placeholder="search the catalog">
+        <a href="../view/" class="menu-links">
+            <img src="../assets/img/search.png" alt="magnifying glass">View Catalog
+        </a>
+        <a href="../add/" class="menu-links">
+            <img src="../assets/img/plus.png" alt="plus sign">Add Entries
+        </a>
+        <a href="../delete/" class="menu-links">
+            <img src="../assets/img/line.png" alt="minus sign">Delete Entries
+        </a>
+        <a href="" class="menu-links" id="current-link">
+            <img src="../assets/img/cog.png" alt="gear">Settings
+        </a>
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/Slidebars/dev/slidebars.js"></script>
+    <script src="../assets/js/jquery.color-2.1.2.min.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

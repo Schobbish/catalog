@@ -21,7 +21,7 @@ nav {
     border: 1px solid #fdf6e3;
     width: 41px;
     position: relative;
-    top: 4px;
+    top: 2px;
 }
 #hamburger img {
     width: 25px;
@@ -47,6 +47,8 @@ body {
 #main {
     background: transparent;
     padding: 20px 5% 10px 5%;
+    font-family: "PT Serif";
+    font-size: 16px;
 }
 
 /***************
