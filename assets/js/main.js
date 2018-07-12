@@ -7,12 +7,12 @@ function getURIQuery() {
         window.location.replace(window.location.href.split('?')[0]);
     }
 }
+var controller = new slidebars();
 
 $(document).ready(function() {
     /******************
      * init slidebars *
      ******************/
-    var controller = new slidebars();
     controller.init();
 
     $('#hamburger').click(function(event) {
@@ -48,7 +48,11 @@ $(document).ready(function() {
         if (event.key == 'Enter') {
             const searchQuery = encodeURIComponent($(this).val());
             const redirectURI = window.location.origin + '/catalog/view/?' + searchQuery;
-            window.location.href = redirectURI;
+            // close menu then delay to finish animation
+            controller.close('menu');
+            window.setTimeout(function() {
+                window.location.href = redirectURI;
+            }, 275);
         }
     });
 });
