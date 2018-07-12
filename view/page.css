@@ -4,12 +4,12 @@
 }
 #bar {
     box-sizing: border-box;
-    width: 85%;
+    width: 83%;
     margin-right: 2%;
 }
 #search-submit {
     box-sizing: border-box;
-    width: 10%;
+    width: 13%;
 }
 #table-outer {
     overflow-x: scroll;
