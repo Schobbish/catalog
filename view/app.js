@@ -17,7 +17,10 @@ $(document).ready(function() {
             searchCatalog($('#bar').val());
         }
     });
-    $('#search-submit').click(function(event) {
+    $('#search-submit').click(function() {
         searchCatalog($('#bar').val());
+    });
+    $('#showing').change(function() {
+        $('#total-entries').html($('#showing').val());
     });
 });

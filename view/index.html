@@ -25,9 +25,18 @@
             <input type="search" placeholder="search" id="bar">
             <input type="submit" value="Go" id="search-submit">
         </div>
-        <div id="table-options">
+        <p id="table-options">
+            Showing
+            <select id="showing">
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            entries out of <span id="total-entries">--</span>
+        </p>
+        <table>
 
-        </div>
+        </table>
         <p id="test"></p>
     </div>
 
