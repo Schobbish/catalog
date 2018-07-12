@@ -1,20 +1,3 @@
-// gets catalog.json. use alwaysFunction to specify what to do with that data.
-function getCatalog(alwaysFunction) {
-    var json;
-    $.getJSON('../catalog.json').done(function(data) {
-        json = data;
-    }).fail(function() {
-        // if failed use example catalog
-        console.log('failed to get ../catalog.json. using ../example-catalog.json instead');
-        $.getJSON('../example-catalog.json').done(function(data) {
-            json = data;
-        }).fail(function() {
-            // if this fails send out error.
-            console.error('failed to get ../example-catalog.json. does it exist?');
-        });
-    }).always(alwaysFunction);
-}
-
 // also does other things like show the total artists and get the maxArtists value
 // artists, albums (optional), & categories are lists that the function can choose from.
 function generateTable(artists, json, start, albums = undefined, categories = undefined) {
@@ -62,41 +45,36 @@ function searchCatalog(query, json) {
 
 
 $(document).ready(function() {
-    const uriQuery = getURIQuery();
+    getCatalog(function(json) {
+        const uriQuery = getURIQuery();
 
-    // search for query if present
-    if (uriQuery) {
-        $('#bar').val(uriQuery);
-        getCatalog(function(json) {
-            // exit early if no json
-            if (!json) {
-                $('#TABLE').html('<tr><td>Failed to get any info to show here</td></tr>');
-                return 1;
+        // remove the 'please wait'
+        $('#TABLE tr').remove();
+        // exit early if no json
+        if (!json) {
+            // BUG: does not work; instead shows a lot of stuff. it appears that json gets defined somewhere and it skips over the fail function
+            $('#TABLE').html('<tr><td>Failed to get any info to show here</td></tr>');
+        } else {
+            // search for query if present
+            if (uriQuery) {
+                $('#bar').val(uriQuery);
+                searchCatalog(uriQuery);
+            } else {
+                // else, generate table
+                const artists = Object.keys(json).sort();
+                const startIndex = 0;
+                generateTable(artists, json, startIndex);
             }
-            searchCatalog(uriQuery);
-        });
-    } else {
-        getCatalog(function(json) {
-            // exit early if no json
-            if (!json) {
-                $('#TABLE').html('<tr><td>Failed to get any info to show here</td></tr>');
-                return 1;
-            }
-
-            // generate table
-            const artists = Object.keys(json).sort();
-            const startIndex = 0;
-            generateTable(artists, json, startIndex);
-        });
-    }
-
-    $('#bar').keydown(function(event) {
-        if (event.key == 'Enter') {
-            $(this).blur();
-            searchRedirect($('#bar').val());
         }
-    });
-    $('#search-submit').click(function() {
-        searchRedirect($('#bar').val());
-    });
+
+        $('#bar').keydown(function(event) {
+            if (event.key == 'Enter') {
+                $(this).blur();
+                searchRedirect($('#bar').val());
+            }
+        });
+        $('#search-submit').click(function() {
+            searchRedirect($('#bar').val());
+        });
+    }, '../');
 });
