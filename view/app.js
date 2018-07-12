@@ -13,6 +13,7 @@ $(document).ready(function() {
     }
     $('#bar').keydown(function(event) {
         if (event.key == 'Enter') {
+            $(this).blur();
             searchCatalog($('#bar').val());
         }
     });

@@ -49,6 +49,7 @@ $(document).ready(function() {
             const searchQuery = encodeURIComponent($(this).val());
             const redirectURI = window.location.origin + '/catalog/view/?' + searchQuery;
             // close menu then delay to finish animation
+            $(this).blur();
             controller.close('menu');
             window.setTimeout(function() {
                 window.location.href = redirectURI;
