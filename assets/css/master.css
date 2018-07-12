@@ -19,13 +19,13 @@ nav {
     display: inline-block;
     border-radius: 4px;
     border: 1px solid #fdf6e3;
-    width: 41px;
+    width: 43px;
     position: relative;
     top: 2px;
 }
 #hamburger img {
     width: 25px;
-    padding: 8px 8px 5px 8px;
+    padding: 8px 9px 5px 9px;
 }
 nav h1 {
     font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
@@ -43,12 +43,17 @@ nav h1 {
  ***************/
 body {
     -webkit-text-size-adjust: 100%;
+    background-color: #fdf6e3;
+}
+#main a {
+    color: #b58900;
 }
 #main {
     background: transparent;
     padding: 20px 5% 10px 5%;
     font-family: "PT Serif";
     font-size: 16px;
+    color: #657b83;
 }
 
 /***************
@@ -66,7 +71,7 @@ body {
     color: #fdf6e3;
     text-decoration: none;
 }
-.menu-links:nth-of-type(2) {
+a.menu-links:nth-of-type(1) {
     border-top: 1px solid #586e75;
 }
 .menu-links img {
@@ -75,16 +80,18 @@ body {
     position: relative;
     top: 3px;
 }
-#link-home {
+#menu h1 {
     font-size: 40px;
     font-weight: bold;
     text-align: center;
     padding: 10px 0 4px 0;
+    margin: 0;
     border-bottom: none;
 }
 #menu input {
     width: 80%;
-    margin: 10px 10% 10px 10%;
+    margin: 10px 8.5% 10px 8.5%;
+    padding: 1%;
 }
 #current-link {
     background-color: #073640;
