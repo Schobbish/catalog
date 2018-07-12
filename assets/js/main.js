@@ -7,6 +7,12 @@ function getURIQuery() {
         window.location.replace(window.location.href.split('?')[0]);
     }
 }
+
+// redirects to the view page and searches for query
+function searchRedirect(query) {
+    const encodedQuery = encodeURIComponent(query);
+    window.location.href = window.location.origin + '/catalog/view/?' + encodedQuery;
+}
 var controller = new slidebars();
 
 $(document).ready(function() {
@@ -39,20 +45,18 @@ $(document).ready(function() {
         }, 275);
     });
 
-    /**************
-     * search bar *
-     **************/
+    /*******************
+     * menu search bar *
+     *******************/
     $('#menu input').keydown(function(event) {
         // if user searches for something redirect to the view page and show results
         // this will not work on local
         if (event.key == 'Enter') {
-            const searchQuery = encodeURIComponent($(this).val());
-            const redirectURI = window.location.origin + '/catalog/view/?' + searchQuery;
             // close menu then delay to finish animation
             $(this).blur();
             controller.close('menu');
             window.setTimeout(function() {
-                window.location.href = redirectURI;
+                searchRedirect($('#menu input').val());
             }, 275);
         }
     });

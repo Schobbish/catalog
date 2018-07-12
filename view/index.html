@@ -22,7 +22,7 @@
 
     <div id="main" canvas="container">
         <div id="search">
-            <input type="search" placeholder="search" id="bar">
+            <input type="search" placeholder="search for an artist or an album" id="bar">
             <input type="submit" value="Go" id="search-submit">
         </div>
         <p id="table-options">
@@ -32,11 +32,20 @@
                 <option value="50">50</option>
                 <option value="100">100</option>
             </select>
-            entries out of <span id="total-entries">--</span>
+            artists out of <span id="total-artists">--</span>
         </p>
         <div id="table-outer">
             <table>
-                
+                <thead>
+                    <tr>
+                        <td>Artist</td>
+                        <td>Album</td>
+                        <td>Category</td>
+                    </tr>
+                </thead>
+                <tbody id="TABLE">
+
+                </tbody>
             </table>
         </div>
         <p id="test"></p>
