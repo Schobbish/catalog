@@ -95,9 +95,9 @@ a.menu-links:nth-of-type(1) {
     border-bottom: none;
 }
 #menu input {
+    box-sizing: border-box;
     width: 80%;
-    margin: 10px 8.5% 10px 8.5%;
-    padding: 1%;
+    margin: 10px 10% 10px 10%;
 }
 #current-link {
     background-color: #073640;

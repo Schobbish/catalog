@@ -1,0 +1,13 @@
+#search {
+    width: 100%;
+    max-width: 400px;
+}
+#bar {
+    box-sizing: border-box;
+    width: 85%;
+    margin-right: 2%;
+}
+#search-submit {
+    box-sizing: border-box;
+    width: 10%;
+}
