@@ -14,7 +14,7 @@
     -moz-box-shadow: 0 0 8px 4px rgba(100,100,100,.5);
     box-shadow: 0 0 8px 4px rgba(100,100,100,.5);
     position: relative;
-    z-index: 5;
+    z-index: 2;
 }
 nav {
     width: 100%;
@@ -69,6 +69,7 @@ body {
  ***************/
 [off-canvas] {
     background-color: #002b36;
+    z-index: 3;
 }
 .menu-links {
     display: block;
