@@ -14,7 +14,10 @@ def add():
     if album in catalog[artist]:
         print('That album is already in the catalog.')
     else:
-        catalog[artist][album] = {}
+        category = input('Category: ')
+        catalog[artist][album] = {
+            'category': category
+        }
 
     jsonCatalog = json.dumps(catalog, sort_keys=True, indent=4)
     print('Added {} by {} to the catalog.'.format(album, artist))
