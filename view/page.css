@@ -11,3 +11,6 @@
     box-sizing: border-box;
     width: 10%;
 }
+#table-outer {
+    overflow-x: scroll;
+}
