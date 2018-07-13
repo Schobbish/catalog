@@ -63,6 +63,24 @@ body {
     font-size: 16px;
     color: #657b83;
 }
+#table-outer {
+    overflow-x: scroll;
+}
+#table-outer table {
+    background-color: #eee8d5;
+    padding: 7px;
+}
+#table-outer table thead {
+    font-weight: bold;
+    color: #586e75;
+}
+#table-outer table thead tr td {
+    padding-bottom: 10px;
+}
+#table-outer table tbody tr td {
+    white-space: nowrap;
+    padding: 0 20px 5px 0
+}
 
 /***************
  * MENU STYLES *
