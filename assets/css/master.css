@@ -81,6 +81,9 @@ body {
     white-space: nowrap;
     padding: 0 20px 5px 0
 }
+#table-outer table tbody tr td:last-child {
+    padding-right: 0;
+}
 
 /***************
  * MENU STYLES *

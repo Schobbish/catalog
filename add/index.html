@@ -21,8 +21,63 @@
     </div>
 
     <div id="main" canvas="container">
-        main container - add
-        <p id="test"></p>
+        Artist:<br>
+        <input type="text" id="artist"><br>
+        <span id="artist-check">artist check</span>
+        Album(s):<br>
+        <div id="table-outer">
+            <table id="albums">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Category</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="album">
+                        <td class="album-name">
+                            <input type="text">
+                            <span>album check</span>
+                        </td>
+                        <td class="album-category">
+                            <input type="text">
+                            <span>category check</span>
+                        </td>
+                        <td class="delete">
+                            <input type="button" value="del">
+                        </td>
+                    </tr>
+                    <tr class="album">
+                        <td class="album-name">
+                            <input type="text">
+                            <span>album check</span>
+                        </td>
+                        <td class="album-category">
+                            <input type="text">
+                            <span>category check</span>
+                        </td>
+                        <td class="delete">
+                            <input type="button" value="del">
+                        </td>
+                    </tr>
+                    <!-- dont keep rows below -->
+                    <tr class="album">
+                        <td class="album-name">
+                            <input type="text">
+                            <span>album check</span>
+                        </td>
+                        <td class="album-category">
+                            <input type="text">
+                            <span>category check</span>
+                        </td>
+                        <td class="delete">
+                            <input type="button" value="del">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div id="menu" off-canvas="menu left push">

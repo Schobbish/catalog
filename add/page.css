@@ -1,0 +1,20 @@
+#table-outer {
+    margin-top: 5px;
+}
+#main input, #table-outer table, #table-outer {
+    margin-right: 2%;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 400px;
+}
+#artist-check, .album-name span, .album-category span {
+    font-size: 12px;
+    display: block;
+}
+#artist-check {
+    margin-bottom: 10px;
+}
+.album td:not(.delete) input {
+    box-sizing: border-box;
+    min-width: 145px;
+}
