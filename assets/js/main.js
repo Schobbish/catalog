@@ -16,20 +16,19 @@ function searchRedirect(query) {
 
 // gets catalog.json. use alwaysFunction to specify what to do with that data.
 // rootPath is the path to the root of the website; usually '../' or '' (default)
-function getCatalog(alwaysFunction, rootPath = '') {
-    var json;
+function getCatalog(successFunction, rootPath = '') {
     $.getJSON(rootPath + 'catalog.json').done(function(data) {
-        json = data;
+        successFunction(data);
     }).fail(function() {
         // if failed use example catalog
         console.log('failed to get catalog.json. using example-catalog.json instead');
         $.getJSON(rootPath + 'example-catalog.json').done(function(data) {
-            json = data;
+            successFunction(data);
         }).fail(function() {
             // if this fails send out error. (gets skipped over for some reason?)
             console.log('failed to get example-catalog.json. does it exist?');
         });
-    }).always(alwaysFunction);
+    });
 }
 
 var controller = new slidebars();
