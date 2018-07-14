@@ -16,7 +16,7 @@ function searchRedirect(query) {
 
 // gets catalog.json. use alwaysFunction to specify what to do with that data.
 // rootPath is the path to the root of the website; usually '../' or '' (default)
-function getCatalog(successFunction, rootPath = '') {
+function getCatalog(successFunction, failFunction, rootPath = '') {
     $.getJSON(rootPath + 'catalog.json').done(function(data) {
         successFunction(data);
     }).fail(function() {
@@ -27,6 +27,7 @@ function getCatalog(successFunction, rootPath = '') {
         }).fail(function() {
             // if this fails send out error. (gets skipped over for some reason?)
             console.log('failed to get example-catalog.json. does it exist?');
+            failFunction();
         });
     });
 }

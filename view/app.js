@@ -47,24 +47,17 @@ function searchCatalog(query, json) {
 $(document).ready(function() {
     getCatalog(function(json) {
         const uriQuery = getURIQuery();
-
         // remove the 'please wait'
         $('#TABLE tr').remove();
-        // exit early if no json
-        if (!json) {
-            // BUG: does not work; instead shows a lot of stuff. it appears that json gets defined somewhere and it skips over the fail function
-            $('#TABLE').html('<tr><td>Failed to get any info to show here</td></tr>');
+        // search for query if present
+        if (uriQuery) {
+            $('#bar').val(uriQuery);
+            searchCatalog(uriQuery);
         } else {
-            // search for query if present
-            if (uriQuery) {
-                $('#bar').val(uriQuery);
-                searchCatalog(uriQuery);
-            } else {
-                // else, generate table
-                const artists = Object.keys(json).sort();
-                const startIndex = 0;
-                generateTable(artists, json, startIndex);
-            }
+            // else, generate table
+            const artists = Object.keys(json).sort();
+            const startIndex = 0;
+            generateTable(artists, json, startIndex);
         }
 
         $('#bar').keydown(function(event) {
@@ -76,5 +69,7 @@ $(document).ready(function() {
         $('#search-submit').click(function() {
             searchRedirect($('#bar').val());
         });
+    }, function() {
+        $('#TABLE').html('<tr><td>Failed to get any info to show here</td></tr>');
     }, '../');
 });
