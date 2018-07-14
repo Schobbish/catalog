@@ -1,10 +1,42 @@
 {
-    "_Example catalog": {
+    "_01": {
         "This is an example catalog": {
-            "category": "none"
-        },
+            "category": "example"
+        }
+    },
+    "_02": {
         "to illustrate this website's functions": {
-            "category": "none"
+            "category": "example"
+        }
+    },
+    "_03": {
+        "This is also the default catalog": {
+            "category": "example"
+        }
+    },
+    "_04": {
+        "when catalog.json does not exist.": {
+            "category": "example"
+        }
+    },
+    "_05": {
+        "This is normal if you are previewing the website,": {
+            "category": "example"
+        }
+    },
+    "_06": {
+        "such as on github.io, but if you are": {
+            "category": "example"
+        }
+    },
+    "_07": {
+        "setting up your own catalog,": {
+            "category": "example"
+        }
+    },
+    "_08": {
+        "you should not be seeing this.": {
+            "category": "example"
         }
     }
 }
