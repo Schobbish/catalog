@@ -41,7 +41,6 @@ $(document).ready(function() {
     controller.init();
 
     $('#hamburger').click(function(event) {
-        // Stop default action and bubbling
         event.stopPropagation();
         event.preventDefault();
 
@@ -51,13 +50,12 @@ $(document).ready(function() {
         controller.close('menu');
     });
     $('.menu-links').click(function(event) {
-        // stop default action and bubbling
         event.stopPropagation();
         event.preventDefault();
-        // toggle menu
+
         controller.close('menu');
-        /* THEN go to the site (href needs to be defined outside because $(this)
-        returns undefined otherwise) */
+        // THEN go to the site after animation finishes
+        // (href needs to be defined outside because $(this) returns undefined otherwise)
         var href = $(this).attr('href');
         window.setTimeout(function() {
             window.location.href = href;

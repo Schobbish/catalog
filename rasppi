@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# shell script to update website on raspberry pi
-sudo git pull
-sudo cp -r . /var/www/html/catalog
