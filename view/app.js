@@ -70,6 +70,6 @@ $(document).ready(function() {
             searchRedirect($('#bar').val());
         });
     }, function() {
-        $('#TABLE').html('<tr><td>Failed to get any info to show here</td></tr>');
+        $('#main').html('Failed to get the catalog.');
     }, '../');
 });
