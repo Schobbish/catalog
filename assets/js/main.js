@@ -26,13 +26,39 @@ function getCatalog(successFunction, failFunction, rootPath = '') {
             successFunction(data);
         }).fail(function() {
             // if this fails send out error. (gets skipped over for some reason?)
-            console.log('failed to get example-catalog.json. does it exist?');
+            console.error('failed to get example-catalog.json. does it exist?');
             failFunction();
         });
     });
 }
 
+// returns the list of albums by artists (list or one or more)
+function compileAlbumList(artists, json) {
+    var albumList = [];
+    for (var artist of artists) {
+        albumList = albumList.concat(Object.keys(json[artist]));
+    }
+    return albumList;
+}
+
+// returns the list of attributes (such as category) of albums by artists
+function compileAttrList(attr, artists, json) {
+    var attrList = [];
+    for (var artist of artists) {
+        // make artistAlbums list first then iterate through that
+        const artistAlbums = Object.keys(json[artist]);
+        for (var album of artistAlbums) {
+            const attribute = json[artist][album][attr];
+            // only push if not already in list
+            if (!attrList.includes(attribute))
+                attrList.push(json[artist][album][attr]);
+        }
+    }
+    return attrList;
+}
+
 var controller = new slidebars();
+
 
 $(document).ready(function() {
     /******************
