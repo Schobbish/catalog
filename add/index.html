@@ -22,8 +22,8 @@
 
     <div id="main" canvas="container">
         Artist:<br>
-        <input type="text" id="artist"><br>
-        <span id="artist-check">artist check</span>
+        <input type="text" id="artist" value="Please wait..." placeholder="required"><br>
+        <span id="artist-check" class="warn good">&nbsp;</span>
         Album(s):<br>
         <div id="table-outer">
             <table id="albums">
@@ -37,39 +37,12 @@
                 <tbody>
                     <tr class="album">
                         <td class="album-name">
-                            <input type="text">
-                            <span>album check</span>
+                            <input type="text" placeholder="required">
+                            <span>&nbsp;</span>
                         </td>
                         <td class="album-category">
-                            <input type="text">
-                            <span>category check</span>
-                        </td>
-                        <td class="delete">
-                            <input type="button" value="del">
-                        </td>
-                    </tr>
-                    <tr class="album">
-                        <td class="album-name">
-                            <input type="text">
-                            <span>album check</span>
-                        </td>
-                        <td class="album-category">
-                            <input type="text">
-                            <span>category check</span>
-                        </td>
-                        <td class="delete">
-                            <input type="button" value="del">
-                        </td>
-                    </tr>
-                    <!-- dont keep rows below -->
-                    <tr class="album">
-                        <td class="album-name">
-                            <input type="text">
-                            <span>album check</span>
-                        </td>
-                        <td class="album-category">
-                            <input type="text">
-                            <span>category check</span>
+                            <input type="text" placeholder="required">
+                            <span>&nbsp;</span>
                         </td>
                         <td class="delete">
                             <input type="button" value="del">
@@ -78,6 +51,8 @@
                 </tbody>
             </table>
         </div>
+        <input type="submit" id="submit">
+        <span id="after-submit">Please wait...</span>
     </div>
 
     <div id="menu" off-canvas="menu left push">

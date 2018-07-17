@@ -18,3 +18,19 @@
     box-sizing: border-box;
     min-width: 145px;
 }
+#main #submit {
+    margin-top: 15px;
+    max-width: 75px;
+    margin-right: 10px;
+}
+
+/* colors */
+.error, #after-submit {
+    color: #dc322f;
+}
+.warn {
+    color: #b58900;
+}
+.good {
+    color: #859900;
+}
