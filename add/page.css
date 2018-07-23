@@ -23,9 +23,13 @@
     max-width: 75px;
     margin-right: 10px;
 }
+#table-outer #add-row {
+    margin-top: 5px;
+    max-width: 75px;
+}
 
 /* colors */
-.error, #after-submit {
+.error {
     color: #dc322f;
 }
 .warn {

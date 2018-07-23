@@ -6,9 +6,7 @@ function switchClass(selector, newClass) {
 // checks if elements' input value is in checkValues (array) and does something
 // type will be displayed in the message (i.e. album in 'album already exists')
 // good is true if it is good that the value is in checkValues
-// returns whether they were all true
 function checkValues(elements, checkValues, type, good) {
-    var allSuccess = true;
     for (var ele of elements) {
         const value = $(ele).children('input').val();
         if (value) {
@@ -27,7 +25,6 @@ function checkValues(elements, checkValues, type, good) {
                 if (checkValues.includes(value)) {
                     allSuccess = false;
                     switchClass($(ele).children('span'), 'error');
-                    $('#submit').prop('disabled', true);
                     $(ele).children('span').html(type + ' already exists');
                 } else {
                     switchClass($(ele).children('span'), 'good');
@@ -36,10 +33,11 @@ function checkValues(elements, checkValues, type, good) {
             }
         }
     }
-    return allSuccess;
 }
 
 // this will return a string on failure so false is good and true is bad
+// element should be a .album element
+// only used in the next function (as of 2018-07-23)
 function checkAlbum(element, artist, newArtist, json) {
     try {
         // tests condition 1
@@ -51,20 +49,14 @@ function checkAlbum(element, artist, newArtist, json) {
             if (artistAlbums.includes($(element)
                 .children('.album-name').children('input').val())) {
                 throw new Error('One or more albums already exist');
-            } else {
-                // tests condition 4
-                if (!$(element).children('.album-category').children('input').val()) {
-                    throw new Error('One or more albums do not have a category');
-                }
             }
+        }
+        // tests condition 4
+        if ($(element).children('.album-name').children('input').val() &&
+            $(element).children('.album-category').children('input').val()) {
+            // do nothing
         } else {
-            // tests condition 4
-            if ($(element).children('.album-name').children('input').val() &&
-                $(element).children('.album-category').children('input').val()) {
-                // do nothing
-            } else {
-                throw new Error('This field is empty');
-            }
+            throw new Error('There is an empty field');
         }
     } catch (e) {
         console.log(e);
@@ -72,7 +64,9 @@ function checkAlbum(element, artist, newArtist, json) {
     }
 }
 
-function checkAllAlbums(json) {
+function checkAllAlbums(json, artists) {
+    // disable button for some reason
+    $('#submit').prop('disabled', true);
     /* CONDITIONS TO TEST:
      * 1. Artist must be filled in
      * 2. There cannot be any duplicate albums
@@ -81,14 +75,31 @@ function checkAllAlbums(json) {
      * 4. Each album must have a category (empty lines are okay)
      */
     try {
-        // generate list of albums one by one to test for duplicates
+        // generate list of albums one by one to test for duplicates (condition 1)
+        const artist = $('#artist').val();
+        const newArtist = !artists.includes(artist);
+        var albumList = [];
 
-        // iterate through all .album elements with checkAlbum()
+        $('.album').each(function() {
+            // traverse the tree to get the album name
+            const currAlbum = $(this).children('.album-name').children('input').val();
+            // check if list already has the album
+            if (!albumList.includes(currAlbum)) {
+                albumList.push(currAlbum);
+                const checkOutput = checkAlbum($(this), artist, newArtist, json);
+                if (checkOutput) throw new Error(checkOutput);
+            } else {
+                throw new Error('There are duplicate albums.');
+            }
+        });
 
         // submit form to php file as json (don't forget uri encoding!)
+        switchClass($('#after-submit'), 'good');
+        $('#after-submit').html('Submitting...');
     } catch (e) {
         console.log(e);
         $('#after-submit').html(e);
+        $('#submit').prop('disabled', false);
     }
 }
 
@@ -108,6 +119,8 @@ function events(json, artistDone, newArtist) {
     </td>
 </tr>`;
 
+    // remove event listeners before adding them again
+    $('#artist, .album-name, .album-category, .delete input, #add-row, #submit').off();
 
     $('#artist').change(function() {
         if ($(this).val()) {
@@ -142,10 +155,6 @@ function events(json, artistDone, newArtist) {
         } else {
             $(this).children('span').html('&nbsp;');
         }
-        if (!checkAlbum($(this).parent(), $('#artist').val(), newArtist, json)) {
-            $('#albums tbody').append(newAlbum);
-            events(json, artistDone, newArtist);
-        }
     });
     $('.album-category').change(function() {
         if ($(this).children('input').val() && artistDone) {
@@ -153,16 +162,17 @@ function events(json, artistDone, newArtist) {
         } else {
             $(this).children('span').html('&nbsp;');
         }
-        if (!checkAlbum($(this).parent(), $('#artist').val(), newArtist, json)) {
-            $('#albums tbody').append(newAlbum);
-            events(json, artistDone, newArtist);
-        }
     });
     $('.delete input').click(function() {
         $(this).parent().parent().remove();
     });
+    $('#add-row').click(function() {
+        $('#albums tbody').append(newAlbum);
+        // redo all the event listeners
+        events(json, artistDone, newArtist);
+    });
     $('#submit').click(function() {
-        checkAllAlbums(json);
+        checkAllAlbums(json, artists);
     });
 }
 

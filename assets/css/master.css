@@ -65,8 +65,6 @@ body {
 }
 #table-outer {
     overflow-x: scroll;
-}
-#table-outer table {
     background-color: #eee8d5;
     padding: 7px;
 }
