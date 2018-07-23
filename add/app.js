@@ -59,8 +59,8 @@ function checkAlbum(element, artist, newArtist, json) {
             throw new Error('There is an empty field');
         }
     } catch (e) {
-        console.log(e);
-        return e;
+        // cut the 'Error: ' off
+        return e.message;
     }
 }
 
