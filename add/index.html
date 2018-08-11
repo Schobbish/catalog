@@ -31,6 +31,7 @@
                     <tr>
                         <td>Name</td>
                         <td>Category</td>
+                        <td>Location</td>
                         <td></td>
                     </tr>
                 </thead>
@@ -40,12 +41,21 @@
                             <input type="text" placeholder="required">
                             <span>&nbsp;</span>
                         </td>
-                        <td class="album-category">
-                            <input type="text" placeholder="required">
-                            <span>&nbsp;</span>
+                        <td>
+                            <select class="album-category">
+                                <option value="">Please wait...</option>
+                            </select>
+                            <br><span>&nbsp;</span>
+                        </td>
+                        <td>
+                            <select class="album-location">
+                                <option value="">Please wait...</option>
+                            </select>
+                            <br><span>&nbsp;</span>
                         </td>
                         <td class="delete">
                             <input type="button" value="del">
+                            <br><span>&nbsp;</span>
                         </td>
                     </tr>
                 </tbody>

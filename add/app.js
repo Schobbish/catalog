@@ -53,7 +53,7 @@ function checkAlbum(element, artist, newArtist, json) {
         }
         // tests condition 4
         if ($(element).children('.album-name').children('input').val() &&
-            $(element).children('.album-category').children('input').val()) {
+            $(element).children('.album-category').val()) {
             // do nothing
         } else {
             throw new Error('There is an empty field');
@@ -72,7 +72,6 @@ function checkAllAlbums(json, artists) {
      * 2. There cannot be any duplicate albums
      * 3. If the artist already exists,
      *    all the albums must not be in the catalog already.
-     * 4. Each album must have a category (empty lines are okay)
      */
     try {
         // generate list of albums one by one to test for duplicates (condition 1)
@@ -108,21 +107,40 @@ function events(json, settings, artistDone, newArtist) {
     const artists = Object.keys(json);
     const albumRow = `<tr class="album">
     <td class="album-name">
-        <input type="text">
+        <input type="text" placeholder="required">
         <span>&nbsp;</span>
     </td>
-    <td class="album-category">
-        <input type="text">
-        <span>&nbsp;</span>
+    <td>
+        <select class="album-category">
+            <option value="">Please wait...</option>
+        </select>
+        <br><span>&nbsp;</span>
+    </td>
+    <td>
+        <select class="album-location">
+            <option value="">Please wait...</option>
+        </select>
+        <br><span>&nbsp;</span>
     </td>
     <td class="delete">
         <input type="button" value="del">
+        <br><span>&nbsp;</span>
     </td>
 </tr>`;
+    const blankOption = '<option></option>';
 
     // remove event listeners before adding them again
-    $('#artist, .album-name, .album-category, .delete input, #add-row, #submit').off();
+    $('#artist, .album-name, .delete input, #add-row, #submit').off();
 
+    // clear and remake dropdowns
+    $('.album-category').html(blankOption);
+    for (var category of settings.categories) {
+        $('.album-category').append(`<option value="${category}">${category}</option>`);
+    }
+    $('.album-location').html(blankOption);
+    for (var location of settings.locations) {
+        $('.album-location').append(`<option value="${location}">${location}</option>`);
+    }
     $('#artist').change(function() {
         if ($(this).val()) {
             artistDone = true;
@@ -132,13 +150,13 @@ function events(json, settings, artistDone, newArtist) {
                 newArtist = false;
                 $('#artist-check').html('existing artist');
                 checkValues($('.album-name'), compileAlbumList([$(this).val()], json), 'album', false);
-                checkValues($('.album-category'), compileAttrList('category', artists, json), 'category', true);
+                // checkValues($('.album-category'), compileAttrList('category', artists, json), 'category', true);
             } else {
                 switchClass('#artist-check', 'warn');
                 newArtist = true;
                 $('#artist-check').html('new artist');
                 checkValues($('.album-name'), [], 'album', false);
-                checkValues($('.album-category'), compileAttrList('category', artists, json), 'category', true);
+                // checkValues($('.album-category'), compileAttrList('category', artists, json), 'category', true);
             }
         } else {
             artistDone = false;
@@ -157,13 +175,13 @@ function events(json, settings, artistDone, newArtist) {
             $(this).children('span').html('&nbsp;');
         }
     });
-    $('.album-category').change(function() {
-        if ($(this).children('input').val() && artistDone) {
-            checkValues($(this), compileAttrList('category', artists, json), 'category', true);
-        } else {
-            $(this).children('span').html('&nbsp;');
-        }
-    });
+    // $('.album-category').change(function() {
+    //     if ($(this).children('input').val() && artistDone) {
+    //         checkValues($(this), compileAttrList('category', artists, json), 'category', true);
+    //     } else {
+    //         $(this).children('span').html('&nbsp;');
+    //     }
+    // });
     $('.delete input').click(function() {
         $(this).parent().parent().remove();
     });
