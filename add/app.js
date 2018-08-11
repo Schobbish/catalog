@@ -53,7 +53,8 @@ function checkAlbum(element, artist, newArtist, json) {
         }
         // tests condition 4
         if ($(element).children('.album-name').children('input').val() &&
-            $(element).children('.album-category').val()) {
+            $(element).children('td').children('.album-category').val() &&
+            $(element).children('td').children('.album-location').val()) {
             // do nothing
         } else {
             throw new Error('There is an empty field');
@@ -133,6 +134,7 @@ function events(json, settings, artistDone, newArtist) {
     $('#artist, .album-name, .delete input, #add-row, #submit').off();
 
     // clear and remake dropdowns
+    // BUG: clears dropdowns that are already done too
     $('.album-category').html(blankOption);
     for (var category of settings.categories) {
         $('.album-category').append(`<option value="${category}">${category}</option>`);
