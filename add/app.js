@@ -93,6 +93,7 @@ function checkAllAlbums(json, artists) {
             }
         });
 
+        // TODO: this \/
         // submit form to php file as json (don't forget uri encoding!)
         switchClass($('#after-submit'), 'good');
         $('#after-submit').html('Submitting...');
@@ -103,9 +104,9 @@ function checkAllAlbums(json, artists) {
     }
 }
 
-function events(json, artistDone, newArtist) {
+function events(json, settings, artistDone, newArtist) {
     const artists = Object.keys(json);
-    const newAlbum = `<tr class="album">
+    const albumRow = `<tr class="album">
     <td class="album-name">
         <input type="text">
         <span>&nbsp;</span>
@@ -167,9 +168,9 @@ function events(json, artistDone, newArtist) {
         $(this).parent().parent().remove();
     });
     $('#add-row').click(function() {
-        $('#albums tbody').append(newAlbum);
+        $('#albums tbody').append(albumRow);
         // redo all the event listeners
-        events(json, artistDone, newArtist);
+        events(json, settings, artistDone, newArtist);
     });
     $('#submit').click(function() {
         checkAllAlbums(json, artists);
@@ -179,11 +180,15 @@ function events(json, artistDone, newArtist) {
 
 $(document).ready(function() {
     getCatalog(function(json) {
-        // remove please waits
-        $('#after-submit').html('');
-        $('#artist').val('');
+        getSettings(function(settings) {
+            // remove please waits
+            $('#after-submit').html('');
+            $('#artist').val('');
 
-        events(json, false, false);
+            events(json, settings, false, false);
+        }, function() {
+            $('#main').html('Failed to get settings.');
+        }, '../');
     }, function() {
         $('#main').html('Failed to get the catalog.');
     }, '../');

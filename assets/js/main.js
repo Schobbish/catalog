@@ -32,6 +32,24 @@ function getCatalog(successFunction, failFunction, rootPath = '') {
     });
 }
 
+// this could be combined with getCatalog but i'm too lazy to redo everything rn
+// right now both aren't needed at the same time anyway
+function getSettings(successFunction, failFunction, rootPath = '') {
+    $.getJSON(rootPath + 'settings.json').done(function(data) {
+        successFunction(data);
+    }).fail(function() {
+        // if failed use example catalog
+        console.log('failed to get settings.json. using example-settings.json instead');
+        $.getJSON(rootPath + 'example-settings.json').done(function(data) {
+            successFunction(data);
+        }).fail(function() {
+            // if this fails send out error. (gets skipped over for some reason?)
+            console.error('failed to get example-settings.json. does it exist?');
+            failFunction();
+        });
+    });
+}
+
 // returns the list of albums by artists (list or one or more)
 function compileAlbumList(artists, json) {
     var albumList = [];

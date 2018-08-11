@@ -1,5 +1,6 @@
 # ignore created catalog
 catalog.json
+settings.json
 
 
 # Byte-compiled / optimized / DLL files
