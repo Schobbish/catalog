@@ -93,7 +93,7 @@ function checkAllAlbums(json, artists) {
             }
         });
 
-        // TODO: this \/
+        // TODO: this \/, BUG around line 137
         // submit form to php file as json (don't forget uri encoding!)
         switchClass($('#after-submit'), 'good');
         $('#after-submit').html('Submitting...');
